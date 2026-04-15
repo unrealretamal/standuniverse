@@ -1,12 +1,6 @@
 /**
- * Seed script: inserts characters from src/data/jojo-characters.json into Supabase.
- *
- * Usage:
- *   1. Copy .env.local.example to .env.local and fill in your Supabase keys
- *   2. Run the SQL in supabase/001_create_characters.sql in the Supabase SQL Editor
- *   3. npx ts-node src/lib/seed.ts
- *      — or —
- *      npm run migrate
+ * Seed script — same logic as src/lib/migrate.ts but batched for speed.
+ * Run: npx ts-node src/lib/seed.ts
  */
 
 import { createClient } from '@supabase/supabase-js'
@@ -18,9 +12,16 @@ const supabase = createClient(
 )
 
 async function seed() {
-  const { data, error } = await supabase
-    .from('characters')
-    .insert(characters)
+  const rows = characters.map((char) => ({
+    name: char.name,
+    part: char.part,
+    stand: char.stand,
+    theme_song: char.themeSong,
+    youtube_url: char.youtubeUrl,
+    description: char.description,
+  }))
+
+  const { data, error } = await supabase.from('characters').insert(rows)
 
   if (error) console.error('Seed error:', error)
   else console.log('Seeded:', data)

@@ -3,488 +3,488 @@
     "name": "Jonathan Joestar",
     "part": 1,
     "stand": null,
-    "theme_song": "Sono Chi no Sadame",
-    "youtube_url": "",
+    "themeSong": "Sono Chi no Sadame",
+    "youtubeUrl": "",
     "description": "The noble first JoJo. A gentleman who trains in Hamon to defeat his adoptive brother Dio Brando. His kindness and determination define the Joestar bloodline."
   },
   {
     "name": "Dio Brando",
     "part": 1,
     "stand": "The World",
-    "theme_song": "DIO's World",
-    "youtube_url": "",
+    "themeSong": "DIO's World",
+    "youtubeUrl": "",
     "description": "The primary antagonist of Parts 1 and 3. A cunning and ruthless vampire who steals Jonathan's body and becomes one of the most powerful beings in the JoJo universe."
   },
   {
     "name": "Will A. Zeppeli",
     "part": 1,
     "stand": null,
-    "theme_song": "Sono Chi no Sadame",
-    "youtube_url": "",
+    "themeSong": "Sono Chi no Sadame",
+    "youtubeUrl": "",
     "description": "A seasoned Hamon master who mentors Jonathan Joestar. He sacrifices himself to give Jonathan the power needed to face Dio."
   },
   {
     "name": "Robert E. O. Speedwagon",
     "part": 1,
     "stand": null,
-    "theme_song": "Sono Chi no Sadame",
-    "youtube_url": "",
+    "themeSong": "Sono Chi no Sadame",
+    "youtubeUrl": "",
     "description": "A street thug turned loyal ally of Jonathan. His descendants fund the Speedwagon Foundation, which supports the Joestar family for generations."
   },
   {
     "name": "Erina Pendleton",
     "part": 1,
     "stand": null,
-    "theme_song": "Sono Chi no Sadame",
-    "youtube_url": "",
+    "themeSong": "Sono Chi no Sadame",
+    "youtubeUrl": "",
     "description": "Jonathan's childhood sweetheart and eventual wife. Brave and compassionate, she survives the events of Part 1 and lives to an old age."
   },
   {
     "name": "Joseph Joestar",
     "part": 2,
     "stand": "Hermit Purple",
-    "theme_song": "BLOODY STREAM",
-    "youtube_url": "",
+    "themeSong": "BLOODY STREAM",
+    "youtubeUrl": "",
     "description": "The cunning and boisterous grandson of Jonathan. A master of Hamon who defeats the Pillar Men. Later returns in Part 3 as a seasoned Stand user."
   },
   {
     "name": "Caesar Anthonio Zeppeli",
     "part": 2,
     "stand": null,
-    "theme_song": "BLOODY STREAM",
-    "youtube_url": "",
+    "themeSong": "BLOODY STREAM",
+    "youtubeUrl": "",
     "description": "Joseph's rival-turned-partner and grandson of Will A. Zeppeli. A proud Italian Hamon warrior who sacrifices himself in the battle against Wamuu."
   },
   {
     "name": "Lisa Lisa",
     "part": 2,
     "stand": null,
-    "theme_song": "BLOODY STREAM",
-    "youtube_url": "",
+    "themeSong": "BLOODY STREAM",
+    "youtubeUrl": "",
     "description": "A legendary Hamon master and trainer of Joseph and Caesar. She is later revealed to be Joseph's mother, having lived in secret for decades."
   },
   {
     "name": "Kars",
     "part": 2,
     "stand": null,
-    "theme_song": "BLOODY STREAM",
-    "youtube_url": "",
+    "themeSong": "BLOODY STREAM",
+    "youtubeUrl": "",
     "description": "The leader of the Pillar Men and the ultimate villain of Part 2. He seeks the Red Stone of Aja to become the perfect being immune to sunlight."
   },
   {
     "name": "Esidisi",
     "part": 2,
     "stand": null,
-    "theme_song": "BLOODY STREAM",
-    "youtube_url": "",
+    "themeSong": "BLOODY STREAM",
+    "youtubeUrl": "",
     "description": "One of the Pillar Men and Kars's loyal companion. He can superheat his blood to extreme temperatures and uses it as a weapon."
   },
   {
     "name": "Wamuu",
     "part": 2,
     "stand": null,
-    "theme_song": "BLOODY STREAM",
-    "youtube_url": "",
+    "themeSong": "BLOODY STREAM",
+    "youtubeUrl": "",
     "description": "The most honorable of the Pillar Men. A fierce warrior who respects Joseph's fighting spirit and engages him in an honorable chariot race to the death."
   },
   {
     "name": "Rudol von Stroheim",
     "part": 2,
     "stand": null,
-    "theme_song": "BLOODY STREAM",
-    "youtube_url": "",
+    "themeSong": "BLOODY STREAM",
+    "youtubeUrl": "",
     "description": "A German officer who is an unexpected ally against the Pillar Men. Rebuilt as a cyborg after being destroyed by Santana, he fights with mechanical enhancements."
   },
   {
     "name": "Jotaro Kujo",
     "part": 3,
     "stand": "Star Platinum",
-    "theme_song": "STAND PROUD",
-    "youtube_url": "",
+    "themeSong": "STAND PROUD",
+    "youtubeUrl": "",
     "description": "The stoic protagonist of Part 3. His Star Platinum is one of the most powerful Stands with incredible speed and precision. He defeats DIO with a time-stop of his own."
   },
   {
     "name": "Noriaki Kakyoin",
     "part": 3,
     "stand": "Hierophant Green",
-    "theme_song": "STAND PROUD",
-    "youtube_url": "",
+    "themeSong": "STAND PROUD",
+    "youtubeUrl": "",
     "description": "A refined and loyal member of the Stardust Crusaders. His Hierophant Green can extend across vast distances and attack with the powerful Emerald Splash."
   },
   {
     "name": "Jean Pierre Polnareff",
     "part": 3,
     "stand": "Silver Chariot",
-    "theme_song": "STAND PROUD",
-    "youtube_url": "",
+    "themeSong": "STAND PROUD",
+    "youtubeUrl": "",
     "description": "A flamboyant French swordsman seeking revenge for his sister's murder. His Silver Chariot wields a rapier with incredible speed, even shedding its armor for extra velocity."
   },
   {
     "name": "Muhammad Avdol",
     "part": 3,
     "stand": "Magician's Red",
-    "theme_song": "STAND PROUD",
-    "youtube_url": "",
+    "themeSong": "STAND PROUD",
+    "youtubeUrl": "",
     "description": "An Egyptian Stand user and fortune teller who joins the Stardust Crusaders. His Magician's Red controls fire and can detect and bind enemies."
   },
   {
     "name": "Iggy",
     "part": 3,
     "stand": "The Fool",
-    "theme_song": "STAND PROUD",
-    "youtube_url": "",
+    "themeSong": "STAND PROUD",
+    "youtubeUrl": "",
     "description": "A Boston Terrier with an attitude problem who wields The Fool, a Stand that can manipulate sand into any shape. He sacrifices himself to save Polnareff."
   },
   {
     "name": "Vanilla Ice",
     "part": 3,
     "stand": "Cream",
-    "theme_song": "DIO's World",
-    "youtube_url": "",
+    "themeSong": "DIO's World",
+    "youtubeUrl": "",
     "description": "One of DIO's most devoted servants. His Stand Cream creates a void of nothingness that devours everything it touches, making him nearly impossible to counter."
   },
   {
     "name": "N'Doul",
     "part": 3,
     "stand": "Geb",
-    "theme_song": "STAND PROUD",
-    "youtube_url": "",
+    "themeSong": "STAND PROUD",
+    "youtubeUrl": "",
     "description": "A blind assassin sent by DIO who serves him with absolute loyalty. His Stand Geb can control water with deadly precision, compensating for his lack of sight."
   },
   {
     "name": "Mariah",
     "part": 3,
     "stand": "Bastet",
-    "theme_song": "STAND PROUD",
-    "youtube_url": "",
+    "themeSong": "STAND PROUD",
+    "youtubeUrl": "",
     "description": "An Egyptian assassin working for DIO. Her Stand Bastet can magnetize people who touch an outlet, causing metal objects to be drawn to them."
   },
   {
     "name": "Alessi",
     "part": 3,
     "stand": "Sethan",
-    "theme_song": "STAND PROUD",
-    "youtube_url": "",
+    "themeSong": "STAND PROUD",
+    "youtubeUrl": "",
     "description": "A cowardly assassin in DIO's employ. His Stand Sethan can de-age anyone who enters its shadow, reverting them to childhood — or even before birth."
   },
   {
     "name": "Dio Brando",
     "part": 3,
     "stand": "The World",
-    "theme_song": "DIO's World",
-    "youtube_url": "",
+    "themeSong": "DIO's World",
+    "youtubeUrl": "",
     "description": "Now a vampire with a powerful Stand, DIO has established himself in Cairo as he seeks to fulfill a mysterious goal. His The World can stop time, making him nearly invincible."
   },
   {
     "name": "Josuke Higashikata",
     "part": 4,
     "stand": "Crazy Diamond",
-    "theme_song": "Great Days",
-    "youtube_url": "",
+    "themeSong": "Great Days",
+    "youtubeUrl": "",
     "description": "The illegitimate son of Joseph Joestar who protects Morioh Town. His Crazy Diamond can restore objects and people to a previous state — but cannot heal himself."
   },
   {
     "name": "Koichi Hirose",
     "part": 4,
     "stand": "Echoes",
-    "theme_song": "Great Days",
-    "youtube_url": "",
+    "themeSong": "Great Days",
+    "youtubeUrl": "",
     "description": "Josuke's timid but determined classmate whose Stand Echoes evolves through three acts. He grows significantly throughout Part 4, gaining confidence and power."
   },
   {
     "name": "Okuyasu Nijimura",
     "part": 4,
     "stand": "The Hand",
-    "theme_song": "Great Days",
-    "youtube_url": "",
+    "themeSong": "Great Days",
+    "youtubeUrl": "",
     "description": "Josuke's lovable and simple-minded best friend. His Stand The Hand can erase space itself, pulling objects and people together — if only Okuyasu could think faster."
   },
   {
     "name": "Rohan Kishibe",
     "part": 4,
     "stand": "Heaven's Door",
-    "theme_song": "Great Days",
-    "youtube_url": "",
+    "themeSong": "Great Days",
+    "youtubeUrl": "",
     "description": "An arrogant but genius manga artist. His Heaven's Door turns people into books, allowing him to read their memories and write commands directly onto their pages."
   },
   {
     "name": "Yoshikage Kira",
     "part": 4,
     "stand": "Killer Queen",
-    "theme_song": "Killer Queen",
-    "youtube_url": "",
+    "themeSong": "Killer Queen",
+    "youtubeUrl": "",
     "description": "The quiet, obsessive serial killer antagonist of Part 4. His Killer Queen can turn anything it touches into a bomb. He seeks a peaceful life, free from attention."
   },
   {
     "name": "Yukako Yamagishi",
     "part": 4,
     "stand": "Love Deluxe",
-    "theme_song": "Great Days",
-    "youtube_url": "",
+    "themeSong": "Great Days",
+    "youtubeUrl": "",
     "description": "An obsessive girl who falls deeply in love with Koichi. Her Stand Love Deluxe animates and controls her hair as an extremely powerful and versatile weapon."
   },
   {
     "name": "Shigekiyo Yangu",
     "part": 4,
     "stand": "Harvest",
-    "theme_song": "Great Days",
-    "youtube_url": "",
+    "themeSong": "Great Days",
+    "youtubeUrl": "",
     "description": "A chubby, money-obsessed student whose Stand Harvest consists of hundreds of tiny beetle-like creatures that gather objects and money from a wide area."
   },
   {
     "name": "Aya Tsuji",
     "part": 4,
     "stand": "Cinderella",
-    "theme_song": "Great Days",
-    "youtube_url": "",
+    "themeSong": "Great Days",
+    "youtubeUrl": "",
     "description": "A beautician who uses her Stand Cinderella to alter people's features. She helps Koichi track Kira after his identity is changed and shows surprising bravery."
   },
   {
     "name": "Mikitaka Hazekura",
     "part": 4,
     "stand": "Earth Wind and Fire",
-    "theme_song": "Great Days",
-    "youtube_url": "",
+    "themeSong": "Great Days",
+    "youtubeUrl": "",
     "description": "A mysterious boy who claims to be an alien. His ability — whether a Stand or genuine alien power — lets him transform into any object he chooses."
   },
   {
     "name": "Giorno Giovanna",
     "part": 5,
     "stand": "Gold Experience Requiem",
-    "theme_song": "Fighting Gold",
-    "youtube_url": "",
+    "themeSong": "Fighting Gold",
+    "youtubeUrl": "",
     "description": "The son of DIO with the Joestar bloodline. His dream is to become a Gang-Star and reform Passione from within. Gold Experience Requiem can nullify any action or will."
   },
   {
     "name": "Bruno Bucciarati",
     "part": 5,
     "stand": "Sticky Fingers",
-    "theme_song": "Fighting Gold",
-    "youtube_url": "",
+    "themeSong": "Fighting Gold",
+    "youtubeUrl": "",
     "description": "The noble and principled team leader of Passione's assassination team. His Sticky Fingers can create zippers on any surface, allowing him to split and reassemble objects or people."
   },
   {
     "name": "Guido Mista",
     "part": 5,
     "stand": "Sex Pistols",
-    "theme_song": "Fighting Gold",
-    "youtube_url": "",
+    "themeSong": "Fighting Gold",
+    "youtubeUrl": "",
     "description": "A laid-back gunman with a fear of the number four. His Sex Pistols are six tiny Stand creatures that ride and redirect his bullets with uncanny precision."
   },
   {
     "name": "Narancia Ghirga",
     "part": 5,
     "stand": "Aerosmith",
-    "theme_song": "Fighting Gold",
-    "youtube_url": "",
+    "themeSong": "Fighting Gold",
+    "youtubeUrl": "",
     "description": "A volatile but warm-hearted member of Bucciarati's team. His Aerosmith is a tiny fighter plane Stand that can detect enemies via their CO2 emissions."
   },
   {
     "name": "Pannacotta Fugo",
     "part": 5,
     "stand": "Purple Haze",
-    "theme_song": "Fighting Gold",
-    "youtube_url": "",
+    "themeSong": "Fighting Gold",
+    "youtubeUrl": "",
     "description": "A brilliant but unstable young man who left university to join Passione. His Purple Haze releases a deadly flesh-eating virus — uncontrollable even by Fugo himself."
   },
   {
     "name": "Trish Una",
     "part": 5,
     "stand": "Spice Girl",
-    "theme_song": "Fighting Gold",
-    "youtube_url": "",
+    "themeSong": "Fighting Gold",
+    "youtubeUrl": "",
     "description": "The daughter of Diavolo who is initially a target for assassination. She awakens her own Stand Spice Girl, which can make objects soft and rubbery, and becomes an asset to the team."
   },
   {
     "name": "Leone Abbacchio",
     "part": 5,
     "stand": "Moody Blues",
-    "theme_song": "Fighting Gold",
-    "youtube_url": "",
+    "themeSong": "Fighting Gold",
+    "youtubeUrl": "",
     "description": "A former corrupt police officer haunted by his past. His Moody Blues can replay past events like a recording, making it invaluable for investigation."
   },
   {
     "name": "Risotto Nero",
     "part": 5,
     "stand": "Metallica",
-    "theme_song": "Fighting Gold",
-    "youtube_url": "",
+    "themeSong": "Fighting Gold",
+    "youtubeUrl": "",
     "description": "The fearsome leader of La Squadra Esecuzioni. His Metallica controls iron, including the iron within a person's blood, allowing him to create razors inside an enemy's body."
   },
   {
     "name": "Ghiaccio",
     "part": 5,
     "stand": "White Album",
-    "theme_song": "Fighting Gold",
-    "youtube_url": "",
+    "themeSong": "Fighting Gold",
+    "youtubeUrl": "",
     "description": "A hot-tempered assassin whose Stand White Album encases him in a freezing suit of ice armor, able to lower temperatures to near absolute zero in a localized area."
   },
   {
     "name": "Diavolo",
     "part": 5,
     "stand": "King Crimson",
-    "theme_song": "Fighting Gold",
-    "youtube_url": "",
+    "themeSong": "Fighting Gold",
+    "youtubeUrl": "",
     "description": "The mysterious and paranoid boss of Passione whose true identity is unknown even to most of his organization. King Crimson erases time and allows Diavolo to act unseen within the gap."
   },
   {
     "name": "Jolyne Cujoh",
     "part": 6,
     "stand": "Stone Free",
-    "theme_song": "Stone Ocean",
-    "youtube_url": "",
+    "themeSong": "Stone Ocean",
+    "youtubeUrl": "",
     "description": "The daughter of Jotaro Kujo and the protagonist of Part 6. Imprisoned at Green Dolphin Street, her Stone Free can unravel her body and others into string."
   },
   {
     "name": "Ermes Costello",
     "part": 6,
     "stand": "Kiss",
-    "theme_song": "Stone Ocean",
-    "youtube_url": "",
+    "themeSong": "Stone Ocean",
+    "youtubeUrl": "",
     "description": "Jolyne's fierce and loyal cellmate who seeks revenge for her sister's murder. Her Kiss applies stickers that can duplicate objects, which explode back together violently when removed."
   },
   {
     "name": "Emporio Alniño",
     "part": 6,
     "stand": "Burning Down the House",
-    "theme_song": "Stone Ocean",
-    "youtube_url": "",
+    "themeSong": "Stone Ocean",
+    "youtubeUrl": "",
     "description": "A young boy born inside Green Dolphin Street Prison. His Stand stores ghost objects in a room only he can access, and ultimately becomes the key to defeating Pucci."
   },
   {
     "name": "Weather Report",
     "part": 6,
     "stand": "Weather Report",
-    "theme_song": "Stone Ocean",
-    "youtube_url": "",
+    "themeSong": "Stone Ocean",
+    "youtubeUrl": "",
     "description": "A fellow prisoner who controls weather with his Stand of the same name. He possesses a Heavy Weather ability that turns people into snails, activated by rainbows."
   },
   {
     "name": "Foo Fighters",
     "part": 6,
     "stand": "Foo Fighters",
-    "theme_song": "Stone Ocean",
-    "youtube_url": "",
+    "themeSong": "Stone Ocean",
+    "youtubeUrl": "",
     "description": "A colony of plankton that inhabits a dead prisoner's body. Originally a guardian of DISCs for Pucci, F.F. becomes one of Jolyne's most loyal and selfless allies."
   },
   {
     "name": "Narciso Anasui",
     "part": 6,
     "stand": "Diver Down",
-    "theme_song": "Stone Ocean",
-    "youtube_url": "",
+    "themeSong": "Stone Ocean",
+    "youtubeUrl": "",
     "description": "An eccentric man imprisoned for dismembering his girlfriend. He falls instantly in love with Jolyne. His Diver Down can phase into objects and store energy to rebound damage."
   },
   {
     "name": "Enrico Pucci",
     "part": 6,
     "stand": "Made in Heaven",
-    "theme_song": "Stone Ocean",
-    "youtube_url": "",
+    "themeSong": "Stone Ocean",
+    "youtubeUrl": "",
     "description": "A Catholic priest and DIO's most devoted follower. He seeks to achieve Heaven by resetting the universe. His Made in Heaven accelerates time itself toward a new cycle of fate."
   },
   {
     "name": "Johnny Joestar",
     "part": 7,
     "stand": "Tusk Act 4",
-    "theme_song": "Shining Drive",
-    "youtube_url": "",
+    "themeSong": "Shining Drive",
+    "youtubeUrl": "",
     "description": "A paraplegic former jockey who enters the Steel Ball Run race. He gradually awakens Tusk and gains the power of the Golden Spin, an infinite rotational energy."
   },
   {
     "name": "Gyro Zeppeli",
     "part": 7,
     "stand": "Ball Breaker",
-    "theme_song": "Shining Drive",
-    "youtube_url": "",
+    "themeSong": "Shining Drive",
+    "youtubeUrl": "",
     "description": "A skilled executioner and Spin master from the Zeppeli family. He mentors Johnny and wields steel balls charged with the Spin, a force that mirrors the Golden Rectangle."
   },
   {
     "name": "Diego Brando",
     "part": 7,
     "stand": "Scary Monsters",
-    "theme_song": "Shining Drive",
-    "youtube_url": "",
+    "themeSong": "Shining Drive",
+    "youtubeUrl": "",
     "description": "The alternate universe counterpart of Dio. A ruthless jockey with the ability to transform himself and others into dinosaurs using his Stand Scary Monsters."
   },
   {
     "name": "Funny Valentine",
     "part": 7,
     "stand": "D4C (Dirty Deeds Done Dirt Cheap)",
-    "theme_song": "Shining Drive",
-    "youtube_url": "",
+    "themeSong": "Shining Drive",
+    "youtubeUrl": "",
     "description": "The 23rd President of the United States and primary antagonist of Part 7. His D4C allows him to travel between parallel dimensions and swap in alternate versions of himself."
   },
   {
     "name": "Hot Pants",
     "part": 7,
     "stand": "Cream Starter",
-    "theme_song": "Shining Drive",
-    "youtube_url": "",
+    "themeSong": "Shining Drive",
+    "youtubeUrl": "",
     "description": "A mysterious competitor in the Steel Ball Run who is later revealed to be a woman disguised as a man. Her Cream Starter sprays flesh that can be applied to cover wounds or alter appearances."
   },
   {
     "name": "Mountain Tim",
     "part": 7,
     "stand": "Oh! Lonesome Me",
-    "theme_song": "Shining Drive",
-    "youtube_url": "",
+    "themeSong": "Shining Drive",
+    "youtubeUrl": "",
     "description": "A veteran cowboy and marshal who enters the Steel Ball Run. His Stand Oh! Lonesome Me allows him to manipulate his body like a rope, passing through loops and reconfiguring himself."
   },
   {
     "name": "Pocoloco",
     "part": 7,
     "stand": "Hey Ya!",
-    "theme_song": "Shining Drive",
-    "youtube_url": "",
+    "themeSong": "Shining Drive",
+    "youtubeUrl": "",
     "description": "A cheerful and lucky participant in the Steel Ball Run. His Stand Hey Ya! is a tiny creature that whispers the optimal course of action based on probability."
   },
   {
     "name": "Josuke Higashikata (JJL)",
     "part": 8,
     "stand": "Soft & Wet",
-    "theme_song": "JoJolion",
-    "youtube_url": "",
+    "themeSong": "JoJolion",
+    "youtubeUrl": "",
     "description": "A mysterious amnesiac found on the coast of Morioh who is a fusion of Johnny Joestar and Yoshikage Kira. His Soft & Wet produces bubbles that can steal properties from objects."
   },
   {
     "name": "Yasuho Hirose",
     "part": 8,
     "stand": "Paisley Park",
-    "theme_song": "JoJolion",
-    "youtube_url": "",
+    "themeSong": "JoJolion",
+    "youtubeUrl": "",
     "description": "The first person to discover Josuke and his primary love interest. Her Paisley Park can interface with networks and guide her toward the optimal information or path."
   },
   {
     "name": "Norisuke Higashikata IV",
     "part": 8,
     "stand": "King Nothing",
-    "theme_song": "JoJolion",
-    "youtube_url": "",
+    "themeSong": "JoJolion",
+    "youtubeUrl": "",
     "description": "The head of the Higashikata family who takes Josuke in. His King Nothing can track any object or person by following the trail of their scent."
   },
   {
     "name": "Rai Mamezuku",
     "part": 8,
     "stand": "Doggy Style",
-    "theme_song": "JoJolion",
-    "youtube_url": "",
+    "themeSong": "JoJolion",
+    "youtubeUrl": "",
     "description": "A plant appraiser who assists Josuke and Yasuho in their investigation. His Doggy Style can unravel and extend his body like thread, allowing him to stretch across great distances."
   },
   {
     "name": "Tooru",
     "part": 8,
     "stand": "Wonder of U",
-    "theme_song": "JoJolion",
-    "youtube_url": "",
+    "themeSong": "JoJolion",
+    "youtubeUrl": "",
     "description": "The primary antagonist of JoJolion, revealed to be a Stand himself taking human form. Wonder of U causes calamity to befall anyone who pursues its user or the Rokakaka fruit."
   },
   {
     "name": "Yoshikage Kira (JJL)",
     "part": 8,
     "stand": "Killer Queen",
-    "theme_song": "JoJolion",
-    "youtube_url": "",
+    "themeSong": "JoJolion",
+    "youtubeUrl": "",
     "description": "The JoJolion counterpart of Part 4's Kira. A navy doctor who merged with Johnny Joestar's corpse to create the protagonist. His past and motivations are more sympathetic than his alternate self."
   }
 ]

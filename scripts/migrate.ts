@@ -1,12 +1,9 @@
 /**
- * Migration script: inserts characters from src/data/jojo-characters.json into Supabase.
- *
- * Uses SUPABASE_SERVICE_ROLE_KEY to bypass RLS during seed.
+ * Migration script — uses SERVICE_ROLE_KEY to bypass RLS, inserts in batches.
  *
  * Usage:
- *   1. Copy .env.local.example to .env.local and fill in your keys
- *   2. Run SQL in supabase/001_create_characters.sql in the Supabase SQL Editor
- *   3. npm run migrate
+ *   1. Add SUPABASE_SERVICE_ROLE_KEY to .env.local
+ *   2. npm run migrate
  */
 
 import { createClient } from '@supabase/supabase-js'
@@ -31,17 +28,29 @@ async function migrate() {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const characters = require('../src/data/jojo-characters.json')
 
-  console.log(`Inserting ${characters.length} characters...`)
+  const rows = characters.map((char: {
+    name: string; part: number; stand: string | null
+    themeSong: string; youtubeUrl: string; description: string
+  }) => ({
+    name: char.name,
+    part: char.part,
+    stand: char.stand,
+    theme_song: char.themeSong,
+    youtube_url: char.youtubeUrl,
+    description: char.description,
+  }))
+
+  console.log(`Inserting ${rows.length} characters...`)
 
   const BATCH = 20
-  for (let i = 0; i < characters.length; i += BATCH) {
-    const batch = characters.slice(i, i + BATCH)
+  for (let i = 0; i < rows.length; i += BATCH) {
+    const batch = rows.slice(i, i + BATCH)
     const { error } = await supabase.from('characters').insert(batch)
     if (error) {
       console.error(`Error at batch ${i}:`, error.message)
       process.exit(1)
     }
-    console.log(`  ✓ ${i + batch.length} / ${characters.length}`)
+    console.log(`  ✓ ${i + batch.length} / ${rows.length}`)
   }
 
   console.log('Migration complete.')

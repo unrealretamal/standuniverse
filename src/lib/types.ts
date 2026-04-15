@@ -3,9 +3,9 @@ export interface Character {
   name: string
   part: number
   stand: string | null
-  theme_song: string
-  youtube_url: string
-  description: string
+  theme_song: string | null
+  youtube_url: string | null
+  description: string | null
   created_at: string
 }
 
