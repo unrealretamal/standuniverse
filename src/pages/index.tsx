@@ -31,6 +31,10 @@ export default function Home() {
       ? characters
       : characters.filter((c) => c.part === parseInt(selectedPart))
 
+  const countLabel = loading
+    ? '...'
+    : `${filtered.length} character${filtered.length !== 1 ? 's' : ''}${selectedPart !== 'all' ? ` — Part ${selectedPart.padStart(2, '0')}` : ''}`
+
   return (
     <>
       <Head>
@@ -38,49 +42,37 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <main style={{ maxWidth: '680px', margin: '0 auto', padding: '64px 24px 80px' }}>
-        <h1
-          style={{
-            fontSize: '32px',
-            fontWeight: 500,
-            lineHeight: 1.2,
-            color: 'var(--text-primary)',
-            marginBottom: '8px',
-          }}
-        >
-          JoJo&apos;s Bizarre Adventure
+      <main style={{ maxWidth: '880px', margin: '0 auto', padding: '64px 24px 96px' }}>
+        {/* Header */}
+        <p className="jj-eyebrow">// Character Select</p>
+
+        <h1 className="jj-title">
+          JoJo&apos;s Bizarre<br />Adventure
         </h1>
 
-        <p
-          style={{
-            fontSize: '14px',
-            color: 'var(--text-secondary)',
-            marginBottom: '40px',
-          }}
-        >
-          {loading
-            ? 'Loading…'
-            : `${filtered.length} character${filtered.length !== 1 ? 's' : ''}${selectedPart !== 'all' ? ` in Part ${selectedPart}` : ''}`}
-        </p>
+        {/* Decorative divider with count */}
+        <div className="jj-divider">
+          <span className="jj-divider__accent" />
+          <span className="jj-divider__label">{countLabel}</span>
+          <span className="jj-divider__line" />
+        </div>
 
         <Filter selectedPart={selectedPart} onPartChange={setSelectedPart} />
 
         {error && (
-          <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>Error: {error}</p>
+          <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>Error: {error}</p>
         )}
 
         {!loading && !error && filtered.length === 0 && (
-          <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>No characters found.</p>
+          <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>No characters found.</p>
         )}
 
         {!loading && !error && filtered.length > 0 && (
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-              gap: '1px',
-              background: 'var(--border)',
-              border: '1px solid var(--border)',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+              gap: '16px',
             }}
           >
             {filtered.map((character) => (
