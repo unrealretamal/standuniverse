@@ -1,66 +1,95 @@
-import { useState, useMemo } from 'react';
-import type { GetServerSideProps } from 'next';
-import Head from 'next/head';
-import { supabase } from '@/lib/supabase';
-import { Character } from '@/lib/types';
-import Navbar from '@/components/Navbar';
-import CharacterCard from '@/components/CharacterCard';
-import Filter from '@/components/Filter';
+import { useState, useEffect } from 'react'
+import Head from 'next/head'
+import { Character } from '@/lib/types'
+import Navbar from '@/components/Navbar'
+import CharacterCard from '@/components/CharacterCard'
+import Filter from '@/components/Filter'
+import Spotify from '@/components/Spotify'
 
-interface HomeProps {
-  characters: Character[];
-}
+// Replace with a real Spotify track URL to enable the embed
+// e.g. https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC
+const SPOTIFY_TRACK_URL = ''
 
-export default function Home({ characters }: HomeProps) {
-  const [selectedPart, setSelectedPart] = useState<number | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+export default function Home() {
+  const [characters, setCharacters] = useState<Character[]>([])
+  const [selectedPart, setSelectedPart] = useState<number | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  const filtered = useMemo(() => {
-    return characters.filter((c) => {
-      const matchesPart = selectedPart === null || c.part === selectedPart;
-      const matchesSearch =
-        searchQuery === '' ||
-        c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (c.stand?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false);
-      return matchesPart && matchesSearch;
-    });
-  }, [characters, selectedPart, searchQuery]);
+  useEffect(() => {
+    const url = selectedPart
+      ? `/api/characters?part=${selectedPart}`
+      : '/api/characters'
+
+    setLoading(true)
+    setError(null)
+
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch')
+        return res.json()
+      })
+      .then((data: Character[]) => {
+        setCharacters(data)
+        setLoading(false)
+      })
+      .catch((err: Error) => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [selectedPart])
 
   return (
     <>
       <Head>
-        <title>JoJo Universe - Characters</title>
-        <meta name="description" content="Explore JoJo's Bizarre Adventure characters" />
+        <title>JoJo Universe</title>
+        <meta name="description" content="JoJo's Bizarre Adventure characters" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="min-h-screen bg-yellow-50">
+      <div style={{ minHeight: '100vh', backgroundColor: '#f9fafb' }}>
         <Navbar />
 
-        <main className="max-w-7xl mx-auto px-4 py-8">
-          <div className="mb-6">
-            <h1 className="text-4xl font-black uppercase tracking-widest text-black">
+        <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px 16px' }}>
+          <div style={{ marginBottom: '24px' }}>
+            <h1 style={{ fontSize: '28px', fontWeight: 800, color: '#111827', margin: 0 }}>
               Characters
             </h1>
-            <p className="text-sm text-gray-600 mt-1">
-              {filtered.length} of {characters.length} characters
-            </p>
+            {!loading && (
+              <p style={{ fontSize: '13px', color: '#9ca3af', marginTop: '4px' }}>
+                {characters.length} character{characters.length !== 1 ? 's' : ''}
+                {selectedPart ? ` in Part ${selectedPart}` : ''}
+              </p>
+            )}
           </div>
 
-          <Filter
-            selectedPart={selectedPart}
-            onPartChange={setSelectedPart}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-          />
+          {SPOTIFY_TRACK_URL && (
+            <div style={{ marginBottom: '24px', maxWidth: '400px' }}>
+              <Spotify trackUrl={SPOTIFY_TRACK_URL} />
+            </div>
+          )}
 
-          {filtered.length === 0 ? (
-            <p className="text-center text-gray-500 py-16 text-lg font-medium">
-              No characters found.
-            </p>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-              {filtered.map((character) => (
+          <Filter selectedPart={selectedPart} onPartChange={setSelectedPart} />
+
+          {loading && (
+            <p style={{ color: '#9ca3af', fontSize: '14px' }}>Loading characters…</p>
+          )}
+
+          {error && (
+            <p style={{ color: '#dc2626', fontSize: '14px' }}>Error: {error}</p>
+          )}
+
+          {!loading && !error && characters.length === 0 && (
+            <p style={{ color: '#9ca3af', fontSize: '14px' }}>No characters found.</p>
+          )}
+
+          {!loading && !error && characters.length > 0 && (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+              gap: '16px',
+            }}>
+              {characters.map((character) => (
                 <CharacterCard key={character.id} character={character} />
               ))}
             </div>
@@ -68,20 +97,5 @@ export default function Home({ characters }: HomeProps) {
         </main>
       </div>
     </>
-  );
+  )
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { data, error } = await supabase
-    .from('characters')
-    .select('*')
-    .order('part', { ascending: true })
-    .order('name', { ascending: true });
-
-  if (error) {
-    console.error('Supabase fetch error:', error.message);
-    return { props: { characters: [] } };
-  }
-
-  return { props: { characters: data ?? [] } };
-};
