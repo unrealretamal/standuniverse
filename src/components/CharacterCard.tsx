@@ -6,14 +6,14 @@ interface CharacterCardProps {
 }
 
 const PART_COLORS: Record<number, string> = {
-  1: '#6b3fa0',
-  2: '#2e7d32',
-  3: '#1565c0',
-  4: '#ad1457',
-  5: '#b8860b',
-  6: '#00695c',
-  7: '#5d4037',
-  8: '#bf360c',
+  1: '#7c3aed',
+  2: '#b45309',
+  3: '#1d4ed8',
+  4: '#be185d',
+  5: '#a16207',
+  6: '#0e7490',
+  7: '#92400e',
+  8: '#c2410c',
 }
 
 function initials(name: string): string {
@@ -29,15 +29,14 @@ export default function CharacterCard({ character }: CharacterCardProps) {
   const [imgError, setImgError] = useState(false)
   const partColor = PART_COLORS[character.part] ?? '#444'
   const showImage = !!character.image_url && !imgError
+  const partNum = String(character.part).padStart(2, '0')
 
   return (
-    <div
-      style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border)',
-        overflow: 'hidden',
-      }}
-    >
+    <div className="jj-card">
+      {/* Per-part color stripe at top */}
+      <div style={{ height: '3px', background: partColor }} />
+
+      {/* Image or initials placeholder */}
       {showImage ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -62,53 +61,83 @@ export default function CharacterCard({ character }: CharacterCardProps) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '42px',
-            fontWeight: 500,
-            color: 'rgba(255,255,255,0.5)',
-            letterSpacing: '2px',
+            fontSize: '52px',
+            fontWeight: 700,
+            color: 'rgba(255,255,255,0.2)',
+            letterSpacing: '4px',
           }}
         >
           {initials(character.name)}
         </div>
       )}
 
-      <div style={{ padding: '14px 16px' }}>
+      {/* Ghost part number — purely decorative */}
+      <span className="jj-card__ghost">{partNum}</span>
+
+      <div className="jj-card__content">
         <h3
           style={{
             fontSize: '15px',
-            fontWeight: 500,
+            fontWeight: 600,
             color: 'var(--text-primary)',
+            lineHeight: 1.3,
             marginBottom: '6px',
-            lineHeight: 1.4,
           }}
         >
           {character.name}
         </h3>
 
-        <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
-          Part {character.part}
+        <p
+          style={{
+            fontSize: '10px',
+            fontWeight: 500,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            color: 'var(--text-secondary)',
+            marginBottom: '10px',
+          }}
+        >
+          Part {partNum}
         </p>
 
         {character.stand && (
           <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
-            Stand: <span style={{ color: 'var(--text-primary)' }}>{character.stand}</span>
+            <span
+              style={{
+                fontSize: '9px',
+                fontWeight: 500,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'var(--accent)',
+                marginRight: '7px',
+              }}
+            >
+              Stand
+            </span>
+            {character.stand}
           </p>
         )}
 
         {character.theme_song && (
           <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-            Theme:{' '}
+            <span
+              style={{
+                fontSize: '9px',
+                fontWeight: 500,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'var(--accent)',
+                marginRight: '7px',
+              }}
+            >
+              Theme
+            </span>
             {character.youtube_url ? (
-              <a
-                href={character.youtube_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: 'var(--text-primary)' }}
-              >
+              <a href={character.youtube_url} target="_blank" rel="noopener noreferrer">
                 {character.theme_song}
               </a>
             ) : (
-              <span style={{ color: 'var(--text-primary)' }}>{character.theme_song}</span>
+              character.theme_song
             )}
           </p>
         )}
