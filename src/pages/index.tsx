@@ -6,28 +6,38 @@ import Filter from '@/components/Filter'
 
 const WIKI_API = 'https://jojo.fandom.com/api.php'
 
-// Some characters have different wiki page names
 function wikiTitle(name: string, part: number): string {
   if (name === 'Dio Brando' && part === 3) return 'DIO'
   return name
 }
 
+type WikiPage = {
+  title?: string
+  thumbnail?: { source?: string }
+  images?: Array<{ title: string }>
+}
+
 async function fetchWikiImages(characters: Character[]): Promise<Record<number, string>> {
   const idByTitle: Record<string, number> = {}
+  const charByTitle: Record<string, Character> = {}
   for (const c of characters) {
-    idByTitle[wikiTitle(c.name, c.part)] = c.id
+    const t = wikiTitle(c.name, c.part)
+    idByTitle[t] = c.id
+    charByTitle[t] = c
   }
 
   const titles = Object.keys(idByTitle)
   const result: Record<number, string> = {}
 
-  // MediaWiki allows up to 50 titles per request
   for (let i = 0; i < titles.length; i += 50) {
     const batch = titles.slice(i, i + 50)
     const params = new URLSearchParams({
       action: 'query',
-      prop: 'pageimages',
+      // pageimages for wikis that support it; images as reliable fallback
+      prop: 'pageimages|images',
       pithumbsize: '300',
+      imlimit: '15',
+      redirects: '1',
       format: 'json',
       origin: '*',
       titles: batch.join('|'),
@@ -35,15 +45,42 @@ async function fetchWikiImages(characters: Character[]): Promise<Record<number, 
     try {
       const res = await fetch(`${WIKI_API}?${params}`)
       const data = await res.json()
-      for (const page of Object.values(data.query?.pages ?? {}) as Record<string, unknown>[]) {
-        const p = page as { title?: string; thumbnail?: { source?: string } }
-        if (p.thumbnail?.source && p.title) {
-          const id = idByTitle[p.title]
-          if (id !== undefined) result[id] = p.thumbnail.source
+
+      for (const page of Object.values(data.query?.pages ?? {}) as WikiPage[]) {
+        if (!page.title) continue
+        const id = idByTitle[page.title]
+        if (id === undefined) continue
+
+        // Prefer the designated page thumbnail
+        if (page.thumbnail?.source) {
+          result[id] = page.thumbnail.source
+          continue
+        }
+
+        // Fall back: find first image whose filename contains the character's name
+        const char = charByTitle[page.title]
+        if (!page.images || !char) continue
+        const nameParts = char.name
+          .replace(/[()]/g, '')
+          .toLowerCase()
+          .split(' ')
+          .filter((p) => p.length > 2)
+
+        const portrait = page.images.find((img) => {
+          const fname = img.title.replace('File:', '').toLowerCase()
+          return (
+            /\.(png|jpg)$/i.test(fname) &&
+            nameParts.some((p) => fname.includes(p))
+          )
+        })
+
+        if (portrait) {
+          const filename = portrait.title.replace('File:', '')
+          result[id] = `https://jojo.fandom.com/wiki/Special:FilePath/${encodeURIComponent(filename)}`
         }
       }
     } catch {
-      // ignore batch failure, images just won't show for this batch
+      // ignore batch failure
     }
   }
 
