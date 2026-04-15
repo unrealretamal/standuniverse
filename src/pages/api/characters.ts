@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { supabase } from '@/lib/supabase'
+import { getImageUrl } from '@/data/character-images'
+import type { Character } from '@/lib/types'
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,5 +21,11 @@ export default async function handler(
     return res.status(500).json({ error: error.message })
   }
 
-  res.status(200).json(data)
+  const rows = (data ?? []) as Character[]
+  const enriched = rows.map((c) => ({
+    ...c,
+    image_url: c.image_url ?? getImageUrl(c.name, c.part),
+  }))
+
+  res.status(200).json(enriched)
 }
