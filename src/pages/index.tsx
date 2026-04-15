@@ -34,13 +34,30 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>JoJo App</title>
+        <title>JoJo&apos;s Bizarre Adventure — Characters</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '24px 16px' }}>
-        <h1 style={{ marginBottom: '4px' }}>JoJo&apos;s Bizarre Adventure — Characters</h1>
-        <p style={{ color: '#555', marginBottom: '20px', marginTop: 0 }}>
+      <main style={{ maxWidth: '680px', margin: '0 auto', padding: '64px 24px 80px' }}>
+        <h1
+          style={{
+            fontSize: '32px',
+            fontWeight: 500,
+            lineHeight: 1.2,
+            color: 'var(--text-primary)',
+            marginBottom: '8px',
+          }}
+        >
+          JoJo&apos;s Bizarre Adventure
+        </h1>
+
+        <p
+          style={{
+            fontSize: '14px',
+            color: 'var(--text-secondary)',
+            marginBottom: '40px',
+          }}
+        >
           {loading
             ? 'Loading…'
             : `${filtered.length} character${filtered.length !== 1 ? 's' : ''}${selectedPart !== 'all' ? ` in Part ${selectedPart}` : ''}`}
@@ -48,17 +65,22 @@ export default function Home() {
 
         <Filter selectedPart={selectedPart} onPartChange={setSelectedPart} />
 
-        {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+        {error && (
+          <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>Error: {error}</p>
+        )}
 
-        {!loading && !error && filtered.length === 0 && <p>No characters found.</p>}
+        {!loading && !error && filtered.length === 0 && (
+          <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>No characters found.</p>
+        )}
 
         {!loading && !error && filtered.length > 0 && (
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-              gap: '16px',
-              marginTop: '16px',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+              gap: '1px',
+              background: 'var(--border)',
+              border: '1px solid var(--border)',
             }}
           >
             {filtered.map((character) => (
