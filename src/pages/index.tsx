@@ -1,87 +1,72 @@
-import { useState, useMemo } from 'react';
-import type { GetServerSideProps } from 'next';
-import Head from 'next/head';
-import { supabase } from '@/lib/supabase';
-import { Character } from '@/lib/types';
-import Navbar from '@/components/Navbar';
-import CharacterCard from '@/components/CharacterCard';
-import Filter from '@/components/Filter';
+import { useState, useEffect } from 'react'
+import Head from 'next/head'
+import { Character } from '@/lib/types'
+import CharacterCard from '@/components/CharacterCard'
+import Filter from '@/components/Filter'
 
-interface HomeProps {
-  characters: Character[];
-}
+export default function Home() {
+  const [characters, setCharacters] = useState<Character[]>([])
+  const [selectedPart, setSelectedPart] = useState<string>('all')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-export default function Home({ characters }: HomeProps) {
-  const [selectedPart, setSelectedPart] = useState<number | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  useEffect(() => {
+    fetch('/api/characters')
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch characters')
+        return res.json()
+      })
+      .then((data: Character[]) => {
+        setCharacters(data)
+        setLoading(false)
+      })
+      .catch((err: Error) => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [])
 
-  const filtered = useMemo(() => {
-    return characters.filter((c) => {
-      const matchesPart = selectedPart === null || c.part === selectedPart;
-      const matchesSearch =
-        searchQuery === '' ||
-        c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (c.stand?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false);
-      return matchesPart && matchesSearch;
-    });
-  }, [characters, selectedPart, searchQuery]);
+  const filtered =
+    selectedPart === 'all'
+      ? characters
+      : characters.filter((c) => c.part === parseInt(selectedPart))
 
   return (
     <>
       <Head>
-        <title>JoJo Universe - Characters</title>
-        <meta name="description" content="Explore JoJo's Bizarre Adventure characters" />
+        <title>JoJo App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="min-h-screen bg-yellow-50">
-        <Navbar />
+      <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '24px 16px' }}>
+        <h1 style={{ marginBottom: '4px' }}>JoJo&apos;s Bizarre Adventure — Characters</h1>
+        <p style={{ color: '#555', marginBottom: '20px', marginTop: 0 }}>
+          {loading ? 'Loading…' : `${filtered.length} character${filtered.length !== 1 ? 's' : ''}${selectedPart !== 'all' ? ` in Part ${selectedPart}` : ''}`}
+        </p>
 
-        <main className="max-w-7xl mx-auto px-4 py-8">
-          <div className="mb-6">
-            <h1 className="text-4xl font-black uppercase tracking-widest text-black">
-              Characters
-            </h1>
-            <p className="text-sm text-gray-600 mt-1">
-              {filtered.length} of {characters.length} characters
-            </p>
+        <Filter selectedPart={selectedPart} onPartChange={setSelectedPart} />
+
+        {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+
+        {!loading && !error && filtered.length === 0 && (
+          <p>No characters found.</p>
+        )}
+
+        {!loading && !error && filtered.length > 0 && (
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: '16px',
+              marginTop: '16px',
+            }}
+          >
+            {filtered.map((character) => (
+              <CharacterCard key={character.id} character={character} />
+            ))}
           </div>
-
-          <Filter
-            selectedPart={selectedPart}
-            onPartChange={setSelectedPart}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-          />
-
-          {filtered.length === 0 ? (
-            <p className="text-center text-gray-500 py-16 text-lg font-medium">
-              No characters found.
-            </p>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-              {filtered.map((character) => (
-                <CharacterCard key={character.id} character={character} />
-              ))}
-            </div>
-          )}
-        </main>
-      </div>
+        )}
+      </main>
     </>
-  );
+  )
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { data, error } = await supabase
-    .from('characters')
-    .select('*')
-    .order('part', { ascending: true })
-    .order('name', { ascending: true });
-
-  if (error) {
-    console.error('Supabase fetch error:', error.message);
-    return { props: { characters: [] } };
-  }
-
-  return { props: { characters: data ?? [] } };
-};
