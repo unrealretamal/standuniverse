@@ -3,29 +3,31 @@ interface FilterProps {
   onPartChange: (part: string) => void
 }
 
-const PARTS = ['all', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+const PARTS = ['all', '1', '2', '3', '4', '5', '6', '7', '8']
 
 export default function Filter({ selectedPart, onPartChange }: FilterProps) {
   return (
-    <div style={{ marginBottom: '16px' }}>
-      {PARTS.map((part) => (
-        <button
-          key={part}
-          onClick={() => onPartChange(part)}
-          style={{
-            marginRight: '8px',
-            marginBottom: '8px',
-            padding: '5px 12px',
-            fontSize: '13px',
-            border: '1px solid #333',
-            cursor: 'pointer',
-            backgroundColor: selectedPart === part ? '#333' : '#fff',
-            color: selectedPart === part ? '#fff' : '#333',
-          }}
-        >
-          {part === 'all' ? 'All' : `Part ${part}`}
-        </button>
-      ))}
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
+      {PARTS.map((part) => {
+        const active = selectedPart === part
+        return (
+          <button
+            key={part}
+            onClick={() => onPartChange(part)}
+            style={{
+              padding: '5px 14px',
+              fontSize: '13px',
+              fontWeight: active ? 500 : 400,
+              border: '1px solid var(--border)',
+              background: active ? 'var(--accent)' : 'transparent',
+              color: active ? 'var(--text-on-accent)' : 'var(--text-secondary)',
+              cursor: 'pointer',
+            }}
+          >
+            {part === 'all' ? 'All' : `Part ${part}`}
+          </button>
+        )
+      })}
     </div>
   )
 }
