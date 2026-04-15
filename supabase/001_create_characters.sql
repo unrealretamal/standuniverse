@@ -1,13 +1,13 @@
 -- Create characters table for JoJo's Bizarre Adventure characters
 CREATE TABLE IF NOT EXISTS characters (
-  id          SERIAL PRIMARY KEY,
-  name        TEXT      NOT NULL,
-  part        INT       NOT NULL,
-  stand       TEXT,
-  theme_song  TEXT,
-  youtube_url TEXT,
-  description TEXT,
-  created_at  TIMESTAMP DEFAULT NOW()
+  id          BIGSERIAL    PRIMARY KEY,
+  name        VARCHAR(255) NOT NULL,
+  part        INT          NOT NULL,
+  stand       VARCHAR(255),
+  theme_song  VARCHAR(255) NOT NULL DEFAULT '',
+  youtube_url TEXT         NOT NULL DEFAULT '',
+  description TEXT         NOT NULL DEFAULT '',
+  created_at  TIMESTAMP    DEFAULT NOW()
 );
 
 -- Index for filtering by part number
