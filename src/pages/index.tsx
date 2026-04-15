@@ -4,87 +4,73 @@ import { Character } from '@/lib/types'
 import CharacterCard from '@/components/CharacterCard'
 import Filter from '@/components/Filter'
 
-const WIKI_API = 'https://jojo.fandom.com/api.php'
+const ANILIST_API = 'https://graphql.anilist.co'
 
-function wikiTitle(name: string, part: number): string {
-  if (name === 'Dio Brando' && part === 3) return 'DIO'
-  return name
-}
-
-type WikiPage = {
-  title?: string
-  thumbnail?: { source?: string }
-  images?: Array<{ title: string }>
-}
-
-async function fetchWikiImages(characters: Character[]): Promise<Record<number, string>> {
-  const idByTitle: Record<string, number> = {}
-  const charByTitle: Record<string, Character> = {}
-  for (const c of characters) {
-    const t = wikiTitle(c.name, c.part)
-    idByTitle[t] = c.id
-    charByTitle[t] = c
-  }
-
-  const titles = Object.keys(idByTitle)
-  const result: Record<number, string> = {}
-
-  for (let i = 0; i < titles.length; i += 50) {
-    const batch = titles.slice(i, i + 50)
-    const params = new URLSearchParams({
-      action: 'query',
-      // pageimages for wikis that support it; images as reliable fallback
-      prop: 'pageimages|images',
-      pithumbsize: '300',
-      imlimit: '15',
-      redirects: '1',
-      format: 'json',
-      origin: '*',
-      titles: batch.join('|'),
-    })
-    try {
-      const res = await fetch(`${WIKI_API}?${params}`)
-      const data = await res.json()
-
-      for (const page of Object.values(data.query?.pages ?? {}) as WikiPage[]) {
-        if (!page.title) continue
-        const id = idByTitle[page.title]
-        if (id === undefined) continue
-
-        // Prefer the designated page thumbnail
-        if (page.thumbnail?.source) {
-          result[id] = page.thumbnail.source
-          continue
-        }
-
-        // Fall back: find first image whose filename contains the character's name
-        const char = charByTitle[page.title]
-        if (!page.images || !char) continue
-        const nameParts = char.name
-          .replace(/[()]/g, '')
-          .toLowerCase()
-          .split(' ')
-          .filter((p) => p.length > 2)
-
-        const portrait = page.images.find((img) => {
-          const fname = img.title.replace('File:', '').toLowerCase()
-          return (
-            /\.(png|jpg)$/i.test(fname) &&
-            nameParts.some((p) => fname.includes(p))
-          )
-        })
-
-        if (portrait) {
-          const filename = portrait.title.replace('File:', '')
-          result[id] = `https://jojo.fandom.com/wiki/Special:FilePath/${encodeURIComponent(filename)}`
-        }
+// One request, 5 aliased queries — covers Parts 1-6
+const ANILIST_QUERY = `
+  query {
+    s1: Media(search: "JoJo Bizarre Adventure 2012", type: ANIME) {
+      characters(sort: RELEVANCE, perPage: 50) {
+        nodes { name { full } image { large } }
       }
-    } catch {
-      // ignore batch failure
+    }
+    s3: Media(search: "JoJo Stardust Crusaders", type: ANIME) {
+      characters(sort: RELEVANCE, perPage: 50) {
+        nodes { name { full } image { large } }
+      }
+    }
+    s4: Media(search: "Diamond is Unbreakable", type: ANIME) {
+      characters(sort: RELEVANCE, perPage: 50) {
+        nodes { name { full } image { large } }
+      }
+    }
+    s5: Media(search: "Golden Wind JoJo", type: ANIME) {
+      characters(sort: RELEVANCE, perPage: 50) {
+        nodes { name { full } image { large } }
+      }
+    }
+    s6: Media(search: "Stone Ocean JoJo", type: ANIME) {
+      characters(sort: RELEVANCE, perPage: 50) {
+        nodes { name { full } image { large } }
+      }
     }
   }
+`
 
-  return result
+type AniListSeason = {
+  characters?: { nodes?: Array<{ name?: { full?: string }; image?: { large?: string } }> }
+}
+
+async function fetchAniListImages(): Promise<Map<string, string>> {
+  const byName = new Map<string, string>()
+  try {
+    const res = await fetch(ANILIST_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ query: ANILIST_QUERY }),
+    })
+    const json = await res.json()
+    for (const season of Object.values(json.data ?? {}) as AniListSeason[]) {
+      for (const node of season.characters?.nodes ?? []) {
+        if (node.name?.full && node.image?.large) {
+          byName.set(node.name.full.toLowerCase(), node.image.large)
+        }
+      }
+    }
+  } catch { /* ignore */ }
+  return byName
+}
+
+function matchImage(name: string, byName: Map<string, string>): string | null {
+  const key = name.toLowerCase()
+  if (byName.has(key)) return byName.get(key)!
+  // Try reversed "Last First" → "First Last"
+  const parts = key.split(' ')
+  if (parts.length === 2) {
+    const reversed = `${parts[1]} ${parts[0]}`
+    if (byName.has(reversed)) return byName.get(reversed)!
+  }
+  return null
 }
 
 export default function Home() {
@@ -103,13 +89,13 @@ export default function Home() {
         setCharacters(data)
         setLoading(false)
 
-        // Fetch actual image URLs from the wiki in the background
-        const wikiImages = await fetchWikiImages(data)
-        if (Object.keys(wikiImages).length > 0) {
+        // Fetch images from AniList in the background
+        const byName = await fetchAniListImages()
+        if (byName.size > 0) {
           setCharacters(
             data.map((c) => ({
               ...c,
-              image_url: c.image_url ?? wikiImages[c.id] ?? null,
+              image_url: c.image_url ?? matchImage(c.name, byName),
             }))
           )
         }
@@ -135,16 +121,16 @@ export default function Home() {
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '24px 16px' }}>
         <h1 style={{ marginBottom: '4px' }}>JoJo&apos;s Bizarre Adventure — Characters</h1>
         <p style={{ color: '#555', marginBottom: '20px', marginTop: 0 }}>
-          {loading ? 'Loading…' : `${filtered.length} character${filtered.length !== 1 ? 's' : ''}${selectedPart !== 'all' ? ` in Part ${selectedPart}` : ''}`}
+          {loading
+            ? 'Loading…'
+            : `${filtered.length} character${filtered.length !== 1 ? 's' : ''}${selectedPart !== 'all' ? ` in Part ${selectedPart}` : ''}`}
         </p>
 
         <Filter selectedPart={selectedPart} onPartChange={setSelectedPart} />
 
         {error && <p style={{ color: 'red' }}>Error: {error}</p>}
 
-        {!loading && !error && filtered.length === 0 && (
-          <p>No characters found.</p>
-        )}
+        {!loading && !error && filtered.length === 0 && <p>No characters found.</p>}
 
         {!loading && !error && filtered.length > 0 && (
           <div

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Image from 'next/image'
 import { Character } from '@/lib/types'
 
 interface CharacterCardProps {
@@ -29,21 +28,25 @@ function initials(name: string): string {
 export default function CharacterCard({ character }: CharacterCardProps) {
   const [imgError, setImgError] = useState(false)
   const color = PART_COLORS[character.part] ?? '#333'
-  const showImage = character.image_url && !imgError
+  const showImage = !!character.image_url && !imgError
 
   return (
     <div style={{ border: '1px solid #ccc', padding: '16px', backgroundColor: '#fff' }}>
       {showImage ? (
-        <div style={{ position: 'relative', width: '100%', height: '200px', marginBottom: '10px' }}>
-          <Image
-            src={character.image_url!}
-            alt={character.name}
-            fill
-            style={{ objectFit: 'contain', objectPosition: 'top' }}
-            unoptimized
-            onError={() => setImgError(true)}
-          />
-        </div>
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={character.image_url!}
+          alt={character.name}
+          onError={() => setImgError(true)}
+          style={{
+            width: '100%',
+            height: '200px',
+            objectFit: 'contain',
+            objectPosition: 'top',
+            display: 'block',
+            marginBottom: '10px',
+          }}
+        />
       ) : (
         <div
           style={{
